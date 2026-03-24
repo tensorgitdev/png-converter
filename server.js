@@ -22,36 +22,38 @@ const supabase = createClient(
 );
 
 // ✅ PNG 변환 API
+
 app.post("/convert", async (req, res) => {
   try {
     const { id, svgUrl } = req.body;
-    if (!id || !svgUrl) {
-      return res.status(400).json({ error: "id와 svgUrl이 필요합니다." });
-    }
+    console.log("POST /convert", { id, svgUrl });
 
-    // SVG 가져오기
     const svgBuffer = await fetch(svgUrl).then(r => r.arrayBuffer());
-    const pngBuffer = await sharp(Buffer.from(svgBuffer)).png().toBuffer();
+    console.log("Fetched SVG, length:", svgBuffer.byteLength);
 
-    // Supabase Storage 업로드
+    const pngBuffer = await sharp(Buffer.from(svgBuffer)).png().toBuffer();
+    console.log("PNG buffer created, length:", pngBuffer.length);
+
     const filePath = `cards/${id}.png`;
     const { error: uploadError } = await supabase.storage
       .from("guestbook")
       .upload(filePath, pngBuffer, { contentType: "image/png", upsert: true });
 
     if (uploadError) {
+      console.error("Supabase upload error:", uploadError);
       return res.status(500).json({ error: uploadError.message });
     }
 
-    // Public URL 가져오기
     const { data } = supabase.storage.from("guestbook").getPublicUrl(filePath);
+    console.log("Public URL:", data.publicUrl);
 
     return res.json({ success: true, url: data.publicUrl });
   } catch (err) {
-    console.error(err);
+    console.error("Internal Server Error:", err);
     return res.status(500).json({ error: err.message });
   }
 });
+
 
 // ✅ 서버 시작
 const PORT = process.env.PORT || 3000;
