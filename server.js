@@ -95,7 +95,7 @@ app.get("/view-card", async (req, res) => {
     <html lang="ko">
     <head>
       <meta charset="utf-8" />
-      <meta property="og:title" content="guestbook card" />
+      <meta property="og:title" content="ask me anything" />
       <meta property="og:image" content="${imageUrl}" />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
