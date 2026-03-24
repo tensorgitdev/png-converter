@@ -92,20 +92,19 @@ app.get("/view-card", async (req, res) => {
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   return res.send(`<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta property="og:title" content="guestbook card" />
-  <meta property="og:image" content="${imageUrl}" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="${imageUrl}" />
-</head>
-<body style="margin:0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;height:100vh;">
-  <img src="${imageUrl}" style="max-width:100%;height:auto;" />
-  <script>setTimeout(() => location.href = "https://tensorgitdev.github.io/index/card.html?id=${id}", 1000);</script>
-</body>
-</html>`);
+    <html lang="ko">
+    <head>
+      <meta charset="utf-8" />
+      <meta property="og:title" content="guestbook card" />
+      <meta property="og:image" content="${imageUrl}" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="${imageUrl}" />
+    </head>
+    <body style="margin:0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;height:100vh;">
+      <img src="${imageUrl}" style="max-width:100%;height:auto;" />
+    </body>
+    </html>`);
 });
 
 // 서버 시작
