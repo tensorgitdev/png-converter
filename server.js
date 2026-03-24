@@ -74,6 +74,40 @@ app.post("/convert", async (req, res) => {
   }
 });
 
+// ✅ 트위터 카드용 og 태그 페이지
+app.get("/view-card", async (req, res) => {
+  const { id } = req.query;
+
+  if (!id) return res.status(400).send("invalid id");
+
+  const { data, error } = await supabase
+    .from("guestbook")
+    .select("gb_card_image_url")
+    .eq("gb_id", id)
+    .single();
+
+  if (error || !data) return res.status(404).send("not found");
+
+  const imageUrl = data.gb_card_image_url;
+
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  return res.send(`<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta property="og:title" content="guestbook card" />
+  <meta property="og:image" content="${imageUrl}" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${imageUrl}" />
+</head>
+<body style="margin:0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;height:100vh;">
+  <img src="${imageUrl}" style="max-width:100%;height:auto;" />
+  <script>setTimeout(() => location.href = "https://tensorgitdev.github.io/index/card.html?id=${id}", 1000);</script>
+</body>
+</html>`);
+});
+
 // 서버 시작
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
