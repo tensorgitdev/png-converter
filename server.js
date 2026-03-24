@@ -92,20 +92,101 @@ app.get("/view-card", async (req, res) => {
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   return res.send(`<!DOCTYPE html>
-    <html lang="ko">
-    <head>
-      <meta charset="utf-8" />
-      <meta property="og:title" content="ask me anything" />
-      <meta property="og:image" content="${imageUrl}" />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="${imageUrl}" />
-    </head>
-    <body style="margin:0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;height:100vh;">
-      <p><img src="${imageUrl}" style="max-width:100%;height:auto;" /></p>
-      <p><button onclick="location.href='https://tensorgitdev.github.io/index/';">ask me anything</button></p>
-    </body>
-    </html>`);
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="ask me anything" />
+  <meta property="og:image" content="${imageUrl}" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${imageUrl}" />
+  <title>Ask Me Anything</title>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --hover-color: #4338ca;
+      --bg-color: #f8fafc;
+      --text-color: #1e293b;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    .image-wrapper {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      aspect-ratio: 1 / 1; /* 이미지를 정사각형으로 유지 (필요시 조정) */
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-ask {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-ask:hover {
+      background-color: var(--hover-color);
+      box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-ask:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-wrapper">
+      <img src="${imageUrl}" alt="Main Visual" />
+    </div>
+    <button class="btn-ask" onclick="location.href='https://tensorgitdev.github.io/index/';" aria-label="질문하기">
+      Ask me anything
+    </button>
+  </div>
+
+</body>
+</html>`);
 });
 
 // 서버 시작
