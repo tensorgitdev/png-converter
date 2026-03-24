@@ -120,18 +120,6 @@ app.get("/view-card", async (req, res) => {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
 
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      transition: transform 0.3s ease;
-    }
-
-
     .btn-ask {
       background-color: var(--primary-color);
       color: white;
