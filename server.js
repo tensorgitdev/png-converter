@@ -151,9 +151,11 @@ app.get("/view-card", async (req, res) => {
     <div class="image-wrapper">
       <img src="${imageUrl}" alt="Main Visual" />
     </div>
-    <button class="btn-ask" onclick="location.href='https://tensorgitdev.github.io/index/';" aria-label="질문하기">
-      ask me anything
-    </button>
+    <div style="align: center;">
+      <button class="btn-ask" onclick="location.href='https://tensorgitdev.github.io/index/';" aria-label="질문하기">
+        ask me anything
+      </button>
+    </div>
   </div>
 
 </body>
