@@ -129,9 +129,10 @@ app.get("/view-card", async (req, res) => {
       font-weight: 600;
       border-radius: 12px;
       cursor: pointer;
-      width: 100%;
+      width: 300px;
       transition: all 0.2s ease;
       box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+      margin: 30px 0px 0px 0px;
     }
 
     .btn-ask:hover {
@@ -151,7 +152,7 @@ app.get("/view-card", async (req, res) => {
       <img src="${imageUrl}" alt="Main Visual" />
     </div>
     <button class="btn-ask" onclick="location.href='https://tensorgitdev.github.io/index/';" aria-label="질문하기">
-      Ask me anything
+      ask me anything
     </button>
   </div>
 
