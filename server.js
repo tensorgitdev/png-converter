@@ -102,7 +102,8 @@ app.get("/view-card", async (req, res) => {
       <meta name="twitter:image" content="${imageUrl}" />
     </head>
     <body style="margin:0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;height:100vh;">
-      <img src="${imageUrl}" style="max-width:100%;height:auto;" />
+      <p><img src="${imageUrl}" style="max-width:100%;height:auto;" /></p>
+      <p><button onclick="location.href='https://tensorgitdev.github.io/index/';">ask me anything</button></p>
     </body>
     </html>`);
 });
