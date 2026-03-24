@@ -8,12 +8,10 @@ app.use(express.json());
 
 // ✅ CORS 설정 (모든 도메인 허용)
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+  res.setHeader("Access-Control-Allow-Origin", "https://tensorgitdev.github.io"); // 또는 "*"
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200); // preflight 요청 바로 응답
-  }
+  if (req.method === "OPTIONS") return res.sendStatus(200); // preflight 응답
   next();
 });
 
