@@ -131,24 +131,6 @@ app.get("/view-card", async (req, res) => {
       transition: transform 0.3s ease;
     }
 
-    .container:hover {
-      transform: translateY(-5px);
-    }
-
-    .image-wrapper {
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-      aspect-ratio: 1 / 1; /* 이미지를 정사각형으로 유지 (필요시 조정) */
-    }
-
-    .image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
 
     .btn-ask {
       background-color: var(--primary-color);
