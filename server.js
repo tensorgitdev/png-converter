@@ -24,10 +24,11 @@ const supabase = createClient(
 // ✅ PNG 변환 + 업로드 + DB 업데이트
 app.post("/convert", async (req, res) => {
   try {
-    const { id, svgUrl } = req.body;
-    console.log("POST /convert", { id, svgUrl });
+    const { id } = req.body;
+    console.log("POST /convert", { id });
 
     // 1️⃣ SVG 가져오기
+    const svgUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/guestbook/cards/${id}.svg`;
     const svgBuffer = await fetch(svgUrl).then(r => r.arrayBuffer());
 
     // 2️⃣ PNG 변환
