@@ -83,7 +83,7 @@ app.get("/view-card", async (req, res) => {
 
   const { data, error } = await supabase
     .from("guestbook")
-    .select("gb_card_image_url")
+    .select("gb_card_image_url, gb_message")
     .eq("gb_id", id)
     .single();
 
