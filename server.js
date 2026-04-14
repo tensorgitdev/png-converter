@@ -90,6 +90,7 @@ app.get("/view-card", async (req, res) => {
   if (error || !data) return res.status(404).send("not found");
 
   const imageUrl = data.gb_card_image_url;
+  const gb_message = data.gb_message;
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   return res.send(`<!DOCTYPE html>
@@ -97,7 +98,7 @@ app.get("/view-card", async (req, res) => {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="ask me anything" />
+  <meta property="og:title" content="${gb_message} | ask me anything" />
   <meta property="og:image" content="${imageUrl}" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
